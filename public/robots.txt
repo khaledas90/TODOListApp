@@ -1,3 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
+
+to create new project 
+--
+npx create-snowpack-app . --template @snowpack/app-template-blank-typescript --force

@@ -1,14 +1,245 @@
-#img {
-  display: block;
-  margin: auto;
-  height: 128px;
-  width: 128px;
-  padding: 2rem;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', -apple-system, system-ui, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+}
+.TODO_App {
+  width: 100%;
+  height: 100vh;
+  background-color: #eee;
 }
 
-#canvas {
-  display: block;
-  margin: 2rem auto;
-  width: 540px;
-  height: 540px;
+.container {
+  text-align: center;
+  padding: 10px;
+}
+.container .TODO_Header,
+.container .TODO_Add_Tasks {
+  background-color: #50c2ff;
+  padding: 15px 10px;
+}
+.container .TODO_Header h1 {
+  font-size: 25px;
+  font-weight: 800;
+  margin: 6px 0;
+  color: #fff;
+}
+.container .TODO_Header p {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 6px 0;
+  color: #131314;
+}
+.TODO_Add_Tasks {
+  background-color: #2d7ce3;
+  margin-top: 15px;
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Input-text {
+  display: inline-block;
+  margin: 0;
+  padding: 22px 15px;
+  color: inherit;
+  width: 80%;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: inherit;
+  line-height: 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  outline-color: #eee;
+  transition: box-shadow 0.4s;
+}
+
+.btn {
+  background-color: #0a6bff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset,
+    rgba(0, 44, 97, 0.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 10px;
+  min-height: 56px;
+  min-width: 120px;
+  padding: 16px 20px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  transition: all 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.btn:hover {
+  background-color: #065dd8;
+  transform: translateY(-2px);
+}
+
+.TODO_ViewTask {
+  background-color: #3dccd8;
+  margin-top: 20px;
+  padding-top: 5px;
+  padding-bottom: 6px;
+}
+.Search_task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 9px 0;
+}
+.Search_task .inputSearch {
+  width: 50%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* Table Styles */
+
+.table-wrapper {
+  margin: 9px 25px 21px;
+  box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.fl-table {
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.fl-table td,
+.fl-table th {
+  text-align: center;
+  padding: 8px;
+}
+
+.fl-table td {
+  border-right: 1px solid #f8f8f8;
+  font-size: 12px;
+}
+
+.fl-table thead th {
+  color: #ffffff;
+  background: #4fc3a1;
+}
+
+.fl-table thead th:nth-child(odd) {
+  color: #ffffff;
+  background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.fa-trash {
+  font-size: 20px;
+  color: rgb(250, 4, 4);
+  cursor: pointer;
+}
+/* Responsive */
+
+@media (max-width: 767px) {
+  .fl-table {
+    display: block;
+    width: 100%;
+  }
+  .table-wrapper:before {
+    content: 'Scroll horizontally >';
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    color: white;
+    padding: 0 0 10px;
+  }
+  .fl-table thead,
+  .fl-table tbody,
+  .fl-table thead th {
+    display: block;
+  }
+  .fl-table thead th:last-child {
+    border-bottom: none;
+  }
+  .fl-table thead {
+    float: left;
+  }
+  .fl-table tbody {
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+  }
+  .fl-table td,
+  .fl-table th {
+    padding: 20px 0.625em 0.625em 0.625em;
+    height: 60px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 120px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+  }
+  .fl-table thead th {
+    text-align: left;
+    border-bottom: 1px solid #f7f7f9;
+  }
+  .fl-table tbody tr {
+    display: table-cell;
+  }
+  .fl-table tbody tr:nth-child(odd) {
+    background: none;
+  }
+  .fl-table tr:nth-child(even) {
+    background: transparent;
+  }
+  .fl-table tr td:nth-child(odd) {
+    background: #f8f8f8;
+    border-right: 1px solid #e6e4e4;
+  }
+  .fl-table tr td:nth-child(even) {
+    border-right: 1px solid #e6e4e4;
+  }
+  .fl-table tbody td {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 960px) {
+  .Input-text {
+    width: 75%;
+  }
+}
+@media (min-width: 768px) {
+  .btn {
+    padding: 16px 44px;
+    min-width: 150px;
+  }
+}
+@media (max-width: 550px) {
+  .Input-text {
+    width: 65%;
+  }
 }
